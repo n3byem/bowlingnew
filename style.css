@@ -4,10 +4,10 @@
     cursor: default;
 }
 
-body{
+html, body{
     margin: 0;
 }
-
+       
 p{
     font-weight: 300
 }
@@ -22,7 +22,6 @@ a {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    display: flex;
     margin-top: 20px;
     margin-bottom: 20px;
     padding: 0;
@@ -43,7 +42,6 @@ a {
    height: 99px;
 }
 
-
 nav ul {
     display: flex;
     list-style: none;
@@ -62,7 +60,6 @@ nav ul li a {
     margin: 0;
     padding: 0;
 }
-
 
 .banner {
     align-items: center;
@@ -147,7 +144,6 @@ h2 {
     margin-bottom: 80px;
 }
 
-
 .menu {
     display: flex;
     justify-content: center;
@@ -188,39 +184,65 @@ h2 {
     color: white;
 }
 
-.slider-container {
-    position: relative;
-    width: 100%;
-    max-width: 700px;
-    margin: 0;
-    overflow: hidden;
-}
 .slider {
+    position: relative;
+    max-width: 100%; /* занимает всю ширину контейнера */
+    width: 600px; /* максимальная ширина */
+    margin: auto;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  }
+  .slides {
     display: flex;
     transition: transform 0.5s ease-in-out;
+    width: 100%; /* 3 картинки по 100% */
+  }
+  .slides img {
     width: 100%;
-}
-.slider img {
-    width: 60%;
-    margin: 0 10px;
-    border-radius: 10px;
-}
-.arrow {
+    flex-shrink: 0;
+    object-fit: cover; /* чтобы изображение не исказилось */
+  }
+  /* Кнопки */
+  .prev, .next {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(255, 255, 255, 0.7);
-    border: none;
-    cursor: pointer;
+    background: rgba(0,0,0,0.4);
+    color: white;
     padding: 10px;
+    cursor: pointer;
     border-radius: 50%;
-}
-.prev {
+    user-select: none;
+    z-index: 10;
+    transition: background 0.3s;
+  }
+  .prev:hover, .next:hover {
+    background: rgba(0,0,0,0.7);
+  }
+  .prev {
     left: 10px;
-}
-.next {
+  }
+  .next {
     right: 10px;
-}
+  }
+  /* Точки индикатора */
+  .dots {
+    text-align: center;
+    margin-top: 15px;
+  }
+  .dot {
+    display: inline-block;
+    height: 12px;
+    width: 12px;
+    margin: 0 6px;
+    background-color: #bbb;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  .dot.active {
+    background-color: #717171;
+  }
 
 .cost {
     display: flex;
@@ -243,10 +265,18 @@ h2 {
     margin-bottom: 60px;
 }
 
-.cost img {
-    background-color: rgba(146, 142, 142, 0.5);
-    margin-bottom: 80px;
-    margin-top: 40px;
+table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 500px; /* Можно задать минимальную ширину */
+    font-size: auto;
+}
+  
+th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+    font-size: 20px;
 }
 
 .cost h2 {
@@ -321,7 +351,13 @@ h2 {
     margin-bottom: 20px;
 }
 
-
+.text-map h2 {
+    background-color: #ff0099;
+    color: white;
+    text-align: center;
+    padding: 50px 0;
+    font-size: 34px;
+}
 .footer .logo {
     font-size: 24px;
     font-weight: bold;
@@ -437,4 +473,406 @@ h2 {
     font-size: 30px;
     font-weight: 700;
     color: white;
+}
+.scroll-button {
+    position: absolute;      /* Абсолютное позиционирование относительно страницы */
+    top: 100px;              /* Начальное расстояние от верха */
+    right: 20px;             /* Отступ справа */
+    padding: 10px 20px;
+    background-color: #44468B;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: top 0.3s ease; /* Плавный переход при смене top */
+    z-index: 1000;
+  }
+
+  .fixed-button {
+    position: fixed;     /* Фиксируем кнопку на экране */
+    bottom: 80px;        /* Отступ снизу */
+    right: 20px;         /* Отступ справа */
+    padding: 12px px;
+    background-color: #44468B;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    font-size: 16px;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+  }
+
+/* ------------- Адаптив ------------- */
+
+/* Смартфоны (до 480px) */
+@media (max-width: 480px) {
+    .elem {
+        flex-direction: column;
+        gap: 30px;
+        padding: 10px;
+    }
+
+    #logotype {
+        width: 200px;
+        height: auto;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    nav ul li a {
+        font-size: 16px;
+    }
+
+    h1 {
+        font-size: 32px;
+        padding: 0 10px;
+    }
+
+    .bt1, .bt3, .bt4 {
+        width: 90%;
+        font-size: 22px;
+        height: 50px;
+    }
+
+    .bt2 {
+        width: 90%;
+        font-size: 20px;
+        height: 50px;
+    }
+
+    .banket h3 {
+        width: 90%;
+        font-size: 20px;
+        margin-bottom: 50px;
+    }
+
+    .text p, .menu p {
+        font-size: 18px;
+        width: 90%;
+        margin-bottom: 20px;
+    }
+
+    .menu h2 {
+        font-size: 28px;
+        height: 100px;
+    }
+
+    .slider {
+        width: 100%;
+    }
+
+    .cost p {
+        width: 90%;
+        font-size: 16px;
+        margin-bottom: 30px;
+    }
+
+    table {
+        font-size: 14px;
+        min-width: auto;
+    }
+
+    .cost h2 {
+        font-size: 24px;
+        height: 100px;
+    }
+
+    .container {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .promo {
+        width: 90%;
+        margin-bottom: 20px;
+    }
+
+    .footer {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .footer .images, .footer .nav, .footer .contact {
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .reserve h2 {
+        font-size: 24px;
+        height: auto;
+        padding: 20px;
+        flex-direction: column;
+    }
+
+    .container2 {
+        width: 90%;
+        padding: 10px;
+    }
+
+    #reserve {
+        width: 90%;
+    }
+
+    .form-group input {
+        width: 100%;
+    }
+
+    .form-group2 {
+        width: 100%;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .form-group2 select {
+        width: 80px;
+        height: 40px;
+        font-size: 16px;
+    }
+}
+
+/* Планшеты (от 481px до 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+    .elem {
+        gap: 80px;
+        padding: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    #logotype {
+        width: 280px;
+        height: auto;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    nav ul li {
+        margin: 0 30px 10px 30px;
+    }
+
+    h1 {
+        font-size: 44px;
+    }
+
+    .bt1, .bt3, .bt4 {
+        width: 70%;
+        font-size: 26px;
+        height: 60px;
+    }
+
+    .bt2 {
+        width: 70%;
+        font-size: 24px;
+        height: 55px;
+    }
+
+    .banket h3 {
+        width: 70%;
+        font-size: 28px;
+        margin-bottom: 60px;
+    }
+
+    .text p, .menu p {
+        font-size: 24px;
+        width: 70%;
+    }
+
+    .menu h2 {
+        font-size: 36px;
+        height: 120px;
+    }
+
+    .slider {
+        width: 90%;
+    }
+
+    .cost p {
+        width: 70%;
+        font-size: 18px;
+    }
+
+    table {
+        font-size: 16px;
+    }
+
+    .cost h2 {
+        font-size: 32px;
+        height: 120px;
+    }
+
+    .container {
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        padding: 15px;
+    }
+
+    .promo {
+        width: 45%;
+        margin-bottom: 20px;
+    }
+
+    .footer {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 30px;
+    }
+
+    .reserve h2 {
+        font-size: 28px;
+        height: auto;
+        padding: 30px;
+        flex-direction: column;
+    }
+
+    .container2 {
+        width: 70%;
+        padding: 15px;
+    }
+
+    #reserve {
+        width: 70%;
+    }
+
+    .form-group input {
+        width: 100%;
+    }
+
+    .form-group2 {
+        width: 100%;
+        justify-content: space-between;
+        gap: 20px;
+        margin-top: 15px;
+    }
+
+    .form-group2 select {
+        width: 60px;
+        height: 35px;
+        font-size: 14px;
+    }
+}
+
+/* Ноутбуки и выше (от 769px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .elem {
+        gap: 100px;
+        padding: 20px;
+        flex-wrap: nowrap;
+    }
+
+    #logotype {
+        width: 320px;
+        height: auto;
+    }
+
+    nav ul li {
+        margin-right: 100px;
+    }
+
+    h1 {
+        font-size: 56px;
+    }
+
+    .bt1, .bt3, .bt4 {
+        width: 400px;
+        font-size: 28px;
+        height: 65px;
+    }
+
+    .bt2 {
+        width: 350px;
+        font-size: 26px;
+        height: 60px;
+    }
+
+    .banket h3 {
+        width: 60%;
+        font-size: 32px;
+        margin-bottom: 80px;
+    }
+
+    .text p, .menu p {
+        font-size: 28px;
+        width: 60%;
+    }
+
+    .menu h2 {
+        font-size: 44px;
+        height: 140px;
+    }
+
+    .slider {
+        width: 80%;
+    }
+
+    .cost p {
+        width: 60%;
+        font-size: 20px;
+    }
+
+    table {
+        font-size: 18px;
+    }
+
+    .cost h2 {
+        font-size: 40px;
+        height: 140px;
+    }
+
+    .container {
+        justify-content: space-around;
+        padding: 20px;
+    }
+
+    .promo {
+        width: 30%;
+        margin-bottom: 20px;
+    }
+
+    .footer {
+        padding: 40px;
+        justify-content: space-between;
+    }
+
+    .reserve h2 {
+        font-size: 36px;
+        height: 200px;
+        padding: 0 20px;
+    }
+
+    .container2 {
+        width: 50%;
+        padding: 20px;
+    }
+
+    #reserve {
+        width: 50%;
+    }
+
+    .form-group input {
+        width: 100%;
+    }
+
+    .form-group2 {
+        width: 50%;
+        justify-content: space-around;
+    }
+
+    .form-group2 select {
+        width: 50px;
+        height: 30px;
+        font-size: 15px;
+    }
 }
