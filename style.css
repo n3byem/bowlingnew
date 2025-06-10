@@ -502,6 +502,8 @@ th, td {
     font-size: 16px;
     z-index: 1000;
     transition: background-color 0.3s ease;
+    height: 40px;
+    width: 230px;
   }
 
 /* ------------- Адаптив ------------- */
